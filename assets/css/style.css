@@ -1,7 +1,12 @@
+:root {
+	--title-height: 100px;
+}
+
 body {
 	background-color: rgb(128, 129, 105); /*background*/
 	/* background-color:rgb(93, 112, 93); title background */
 	color: rgb(209, 208, 154); /*Title Text color */
+	text-shadow: 2px 1px black;
 }
 
 header {
@@ -11,22 +16,34 @@ header {
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
-	padding: 3px 15px;
+	padding: 3px 10px;
 	height: 40px;
 	border: rgb(209, 208, 154) solid 2px;
 	border-radius: 2%;
 	box-shadow: 2px 4px black;
 }
 
+#highscore {
+	text-align: left;
+}
+
+#timer {
+	text-align: right;
+}
+
 #containerBox {
 	display: flex;
 	flex-direction: column;
-	height: 300px;
-	width: 40%;
-	align-self: center;
+	height: 90vh;
+	width: min-content;
+	min-width: 300px;
+	width: 95vw;
+	max-width: 768px;
 	position: relative;
-	top: 100px;
-	left: 25%;
+	top: auto;
+	margin-top: 10px;
+	left: auto;
+	margin-left: 10px;
 	border: rgb(209, 208, 154) solid 2px;
 	border-radius: 2%;
 	box-shadow: 2px 4px black;
@@ -34,8 +51,9 @@ header {
 
 #question {
 	background-color: rgb(93, 112, 93);
-	min-height: 100px;
-	padding: 40px 0 8px 10px;
+	min-height: var(--title-height);
+	text-align: center;
+	margin: 3px;
 	font-weight: 900;
 	border-top-left-radius: 2%;
 	border-top-right-radius: 2%;
@@ -45,9 +63,10 @@ header {
 #containerBox ul {
 	display: flex;
 	flex-direction: column;
+	justify-content: stretch;
 }
 
-#containerBox button {
+.button {
 	display: none;
 	background-color: rgb(93, 112, 93);
 	color: white;
@@ -62,4 +81,84 @@ header {
 	margin: 5px;
 	text-align: left;
 	text-indent: 8px;
+}
+
+#leaderboard {
+	display: none;
+	max-width: 95vw;
+	min-width: 50vw;
+	min-height: 300px;
+	max-height: 90vh;
+	position: absolute;
+	top: 10vh;
+	left: 25vw;
+	background-color: rgb(209, 208, 154, 0.75);
+	border: black solid 2px;
+	border-radius: 2%;
+	box-shadow: 2px 4px black;
+	color: black;
+	text-shadow: 2px 1px white;
+	font-weight: 900;
+}
+
+#leaderboard ol {
+	list-style: decimal;
+	list-style-position: inside;
+	padding: 10px;
+}
+
+#resetbutton {
+	position: absolute;
+	top: 60vh;
+	left: 35vw;
+}
+
+#reset {
+	width: 100px;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+}
+
+#records {
+	display: none;
+	position: relative;
+	left: 2%;
+	background-color: rgb(93, 112, 93);
+	color: white;
+	text-shadow: 2px 1px black;
+	font-weight: 700;
+	font-size: 1.1em;
+	border: rgb(209, 208, 154) solid 2px;
+	border-radius: 2%;
+	box-shadow: 2px 4px black;
+	padding: 2px;
+	min-width: 25%;
+	max-width: 90%;
+	margin: 5px;
+	text-align: left;
+	text-indent: 8px;
+}
+
+#records input {
+	background-color: rgb(93, 112, 93);
+	color: white;
+	font-size: 1.1em;
+	border: none;
+	text-shadow: 2px 1px black;
+	text-indent: 5px;
+	width: 100px;
+}
+
+#records button {
+	margin-left: 40%;
+}
+
+#resetLeader {
+	position: fixed;
+	top: 40px;
+	left: 5px;
+	font-size: 0.9em;
+	text-align: center;
+	min-width: 0;
 }
