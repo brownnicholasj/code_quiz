@@ -52,12 +52,11 @@ header {
 	background-color: rgb(93, 112, 93);
 	color: white;
 	font-weight: 700;
-	font-size: 1.2em;
+	font-size: 1.1em;
 	border: rgb(209, 208, 154) solid 2px;
 	border-radius: 2%;
 	box-shadow: 2px 4px black;
 	padding: 2px;
-	width: fit-content;
 	min-width: 25%;
 	max-width: 90%;
 	margin: 5px;
