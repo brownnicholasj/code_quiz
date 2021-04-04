@@ -15,6 +15,8 @@ var records = document.querySelector(`#records`);
 var resetLeader = document.querySelector(`#resetLeader`);
 var saveButton = document.querySelector(`#save`);
 
+var leaders = [{}];
+
 // // Add text to elements
 timerElement.textContent = `Timer: ${timerValue}`;
 buttonA.textContent = `Click to Start`;
@@ -163,70 +165,70 @@ function askQuestion() {
 			d: `  None of the above`,
 			correct: `a`,
 		},
-		{
-			question: `  ______ JavaScript is also called client-side JavaScript`,
-			a: `  Microsoft`,
-			b: `  Navigator`,
-			c: `  LiveWire`,
-			d: `  Native`,
-			correct: `b`,
-		},
-		{
-			question: `  __________ JavaScript is also called server-side JavaScript`,
-			a: `  Microsoft`,
-			b: `   Navigator`,
-			c: `  LiveWire`,
-			d: `  Native`,
-			correct: `c`,
-		},
-		{
-			question: `  What are variables used for in JavaScript Programs?`,
-			a: `  Storing numbers, dates, or other values`,
-			b: `   Varying randomly`,
-			c: `  Causing high-school algebra flashbacks`,
-			d: `  None of the above`,
-			correct: `a`,
-		},
-		{
-			question: `  _____ JavaScript statements embedded in an HTML page can respond to user events such as mouse-clicks, form input, and page navigation`,
-			a: `  Client-side`,
-			b: `   Server-side`,
-			c: `  Local`,
-			d: `  Native`,
-			correct: `a`,
-		},
-		{
-			question: `  What should appear at the very end of your JavaScript?`,
-			a: `  The END statement`,
-			b: `   The </script>`,
-			c: `    The <script>`,
-			d: `None of the above`,
-			correct: `a`,
-		},
-		{
-			question: `  Which of the following can't be done with client-side JavaScript?`,
-			a: `  Validating a form`,
-			b: `   Sending a form's contents by email`,
-			c: `  Storing the form's contents to a database file on the server`,
-			d: `  None of the above`,
-			correct: `c`,
-		},
-		{
-			question: `  Which of the following are capabilities of functions in JavaScript?`,
-			a: `  Return a value`,
-			b: `   Accept parameters and Return a value`,
-			c: `  Accept parameters`,
-			d: `  None of the above`,
-			correct: `c`,
-		},
-		{
-			question: `  Which of the following is not a valid JavaScript variable name?`,
-			a: `  2names`,
-			b: `   _first_and_last_names`,
-			c: `  FirstAndLast`,
-			d: `  None of the above`,
-			correct: `c`,
-		},
+		// {
+		// 	question: `  ______ JavaScript is also called client-side JavaScript`,
+		// 	a: `  Microsoft`,
+		// 	b: `  Navigator`,
+		// 	c: `  LiveWire`,
+		// 	d: `  Native`,
+		// 	correct: `b`,
+		// },
+		// {
+		// 	question: `  __________ JavaScript is also called server-side JavaScript`,
+		// 	a: `  Microsoft`,
+		// 	b: `   Navigator`,
+		// 	c: `  LiveWire`,
+		// 	d: `  Native`,
+		// 	correct: `c`,
+		// },
+		// {
+		// 	question: `  What are variables used for in JavaScript Programs?`,
+		// 	a: `  Storing numbers, dates, or other values`,
+		// 	b: `   Varying randomly`,
+		// 	c: `  Causing high-school algebra flashbacks`,
+		// 	d: `  None of the above`,
+		// 	correct: `a`,
+		// },
+		// {
+		// 	question: `  _____ JavaScript statements embedded in an HTML page can respond to user events such as mouse-clicks, form input, and page navigation`,
+		// 	a: `  Client-side`,
+		// 	b: `   Server-side`,
+		// 	c: `  Local`,
+		// 	d: `  Native`,
+		// 	correct: `a`,
+		// },
+		// {
+		// 	question: `  What should appear at the very end of your JavaScript?`,
+		// 	a: `  The END statement`,
+		// 	b: `   The </script>`,
+		// 	c: `    The <script>`,
+		// 	d: `None of the above`,
+		// 	correct: `a`,
+		// },
+		// {
+		// 	question: `  Which of the following can't be done with client-side JavaScript?`,
+		// 	a: `  Validating a form`,
+		// 	b: `   Sending a form's contents by email`,
+		// 	c: `  Storing the form's contents to a database file on the server`,
+		// 	d: `  None of the above`,
+		// 	correct: `c`,
+		// },
+		// {
+		// 	question: `  Which of the following are capabilities of functions in JavaScript?`,
+		// 	a: `  Return a value`,
+		// 	b: `   Accept parameters and Return a value`,
+		// 	c: `  Accept parameters`,
+		// 	d: `  None of the above`,
+		// 	correct: `c`,
+		// },
+		// {
+		// 	question: `  Which of the following is not a valid JavaScript variable name?`,
+		// 	a: `  2names`,
+		// 	b: `   _first_and_last_names`,
+		// 	c: `  FirstAndLast`,
+		// 	d: `  None of the above`,
+		// 	correct: `c`,
+		// },
 	];
 
 	for (var i = 0; i < buttonContainer.children.length; i++) {
@@ -242,7 +244,7 @@ function askQuestion() {
 	currentAnswer = problem[questionNumber].correct;
 	questionNumber++;
 
-	if (questionNumber === 10) {
+	if (questionNumber === 2) {
 		qHeader.textContent = `Completed with a time of ${timerValue}`;
 
 		for (var i = 0; i < buttonContainer.children.length; i++) {
@@ -264,35 +266,55 @@ function resetQuiz() {
 }
 
 // Leaderboard construction
-var initials = document.querySelector(`#initials`);
 
 function updateLeaders() {
-	var leaders = {
-		name: initials.value,
+	// STORING INPUTS
+	var initials = {
+		name: document.querySelector(`#initials`).value,
 		time: timerValue,
 	};
+	console.log(`1. initials var is ${initials.name} + ${initials.time}`);
+
+	// BLANK ARRAY
+	var leaders = [];
+	// PULL CURRENT LOCAL
+	var get = JSON.parse(localStorage.getItem('leaders'));
+
+	// FILL BLANK ARRAY WITH CURRENT LOCAL
+	leaders = [get];
+	console.log(`2. leaders pull is` + JSON.stringify(leaders));
+
+	if (initials === null || initials === '') {
+		return;
+	}
+
+	// PUSH NEW INPUT INTO ARRAY
+	leaders.push(initials);
+
+	// ADD TO LOCAL
 	localStorage.setItem('leaders', JSON.stringify(leaders));
+
+	console.log(`this should be stored in local under leaders -- ${leaders}`);
+
 	renderLeaderboard();
 }
 
 function renderLeaderboard() {
+	leaderboard.children[0].innerHTML = '';
+
 	// Use JSON.parse() to convert text to JavaScript object
 	var leaders = JSON.parse(localStorage.getItem('leaders'));
-	var place = document.getElementById('leaderboard').children[0];
+
 	// Check if data is returned, if not exit out of the function
-	console.log(`${leaders.name} --- ${leaders.time}`);
-	console.log(place.children[0].dataset.time);
+
 	if (leaders !== null) {
-		for (
-			var i = 0;
-			i < 10 && leaders.time > place.children[i].dataset.time;
-			i++
-		) {
-			place.children[
-				i
-			].textContent = `${leaders.name} ----- ${leaders.time} seconds`;
-			place.children[i].setAttribute(`data-time`, `${leaders.time}`);
-			return;
+		for (var i = 0; i < leaders.length; i++) {
+			var place = document.createElement('li');
+			place.textContent = `${leaders[i].name} ----- ${leaders[i].time} seconds`;
+			place.setAttribute(`data-time`, `${leaders[i].time}`);
+			place.setAttribute(`data-place`, i);
+
+			leaderboard.children[0].appendChild(place);
 		}
 	}
 }
@@ -300,11 +322,14 @@ function renderLeaderboard() {
 // save initials and time to the leaderboard
 saveButton.addEventListener('click', function (event) {
 	event.preventDefault();
+	event.stopPropagation();
 	updateLeaders();
 });
 
 // show the leaderboard on/off
-highScore.addEventListener('click', function () {
+highScore.addEventListener('click', function (event) {
+	event.stopPropagation();
+	event.preventDefault();
 	if (leaderboard.style.display == `block`) {
 		leaderboard.setAttribute(`style`, `display:none;`);
 		resetLeader.setAttribute(`style`, `display:none`);
@@ -316,17 +341,21 @@ highScore.addEventListener('click', function () {
 });
 
 // clear leaderboard
-resetLeader.addEventListener('click', function () {
-	localStorage.clear();
-	for (var i = 0; i < 10; i++) {
-		document.getElementById('leaderboard').children[0].children[
-			i
-		].innerHTML = ``;
-	}
-});
+// resetLeader.addEventListener('click', function (event) {
+// 	event.preventDefault();
+// 	event.stopPropagation();
+// 	localStorage.clear();
+// 	for (var i = 0; i < 10; i++) {
+// 		document.getElementById('leaderboard').children[0].children[
+// 			i
+// 		].innerHTML = ``;
+// 	}
+// });
 
 // Reset page for another try at the quiz
-reset.addEventListener('click', function () {
+reset.addEventListener('click', function (event) {
+	event.stopPropagation();
+	event.preventDefault();
 	window.location.reload();
 });
 
@@ -348,3 +377,4 @@ window.addEventListener(
 	},
 	true
 );
+renderLeaderboard();
