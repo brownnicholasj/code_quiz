@@ -255,7 +255,6 @@ function resetQuiz() {
 
 // Leaderboard construction
 
-//working
 function updateLeaders() {
 	var initials = {
 		name: document.querySelector(`#initials`).value,
