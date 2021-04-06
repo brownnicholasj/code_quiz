@@ -1,5 +1,7 @@
 # Code Quiz
 
+Link to app: https://brownnicholasj.github.io/code_quiz/
+
 ## Description
 
 The Code Quiz is a game that allows a user to answer a series of questions to
